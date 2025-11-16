@@ -9,3 +9,22 @@
 Minimal MATLAB &amp; Python demos for intuition behind analytic signals and the Hilbert transform.
 
 Minimal MATLAB demos to build intuition for the Hilbert transform and analytic signals: FFT, cancellation of negative frequencies, envelopes, instantaneous phase, and positive-frequency representation.
+
+
+Usage:
+matlab -r "demo_hilbert_analytic"
+
+Short Elxplanation
+The Hilbert transform allows us to create an analytic signal whose Fourier transform contains only positive frequencies.
+
+From this analytic signal:
+	•	Magnitude → amplitude envelope
+	•	Angle → instantaneous phase
+	•	Derivative of angle → instantaneous frequency
+
+This repo contains minimal, highly commented demos showing:
+✔ Real → analytic signal conversion
+✔ Envelopes
+✔ Phase
+✔ Chirps / AM examples
+✔ Spectrum before vs after
