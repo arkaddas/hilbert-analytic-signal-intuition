@@ -45,15 +45,32 @@ ha7.Layout.Tile = 3;
 ha9 = polaraxes(t);
 ha9.Layout.Tile = 4;
 
+
+figure(4);
+t = tiledlayout(3,1);   % 2x2 grid
+
+% Top 
+ha10 = axes(t);
+ha10.Layout.Tile = 1;
+
+% Middle
+ha11 = axes(t);
+ha11.Layout.Tile = 2;
+
+% Bottom
+ha12 = axes(t);
+ha12.Layout.Tile = 3;
+
+
 %% Fixed variables
 dt = 0.001; % sampling time interval
 fs = 1/dt; % sampling freq
 t = 0:dt:1; % time axis
 ls = length(t); % length of signal
-freq_components = 0:1:25;
+freq_components = 0:1:1;
 n_fcomp = length(freq_components);
-% phi_components = zeros(size(freq_components)); 
-phi_components = pi/4*linspace(0, 1, size(freq_components, 2)); % linear
+phi_components = zeros(size(freq_components)); 
+% phi_components = pi/4*linspace(0, 1, size(freq_components, 2)); % linear
  % phase components
  % phi_components = 2*pi*rand(size(freq_components)); % Random phase components
 
@@ -128,6 +145,22 @@ title(ha9, ["Polar representation of FFT" "of imaginary part of Analytic Signal"
 % Note here how the negative frequency components are out of phase and thus
 % cancel each oter out, while the positive frequency components have the
 % entire signal energy.
+
+
+%% Show envelope and phase
+
+envelope = abs(analytic_signal);
+phase = unwrap(angle(analytic_signal));
+
+plot(ha10, t, pd_signal); title('Real Signal'); ylabel('x(t)');
+
+plot(ha11, t, envelope); title('Envelope = |analytic|');
+
+plot(ha12, t, phase); title('Instantaneous Phase');
+xlabel('Time (s)');
+
+
+
 
 %% Helper functions
 function fft_phasor_analysis(signal,ls,fs,h_axes_cart,h_axes_polar, n_fcomp)
